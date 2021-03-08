@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>HOME</h1>
+
+
+  {% block content_header %}
+    <h2>Books</h2>
+    <p>
+      <a href="{% url 'upload_pgs' %}" class="btn btn-primary">Upload book</a>
+    </p>
+  {% endblock %}
+
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Place</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in pgs %}
+        <tr>
+          <td>
+            {% if p.image %}
+              <img src="{{ p.image.url }}" alt="{{ p.image }}" style="width:100px;">
+            {% else %}
+              <span class="text-muted">No Image</span>
+            {% endif %}
+          </td>
+          <td>{{ p.name }}</td>
+          <td>{{ p.place }}</td>
+
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
